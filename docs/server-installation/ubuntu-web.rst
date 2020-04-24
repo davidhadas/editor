@@ -1,5 +1,5 @@
-Installing the Numbas editor on Ubuntu
-======================================
+Installing the Numbas editor on Ubuntu Server
+=============================================
 
 These are outline instructions on setting up the Numbas editor with a
 backend MySQL database.
@@ -49,6 +49,12 @@ approach is to use `virtualenv <http://www.virtualenv.org/>`_, which is a tool t
 Database
 --------
 
+#.  Secure the MySQL database:
+
+        sudo mysql_secure_installation
+
+
+
 #.  Open the MySQL client::
 
         sudo mysql
@@ -89,8 +95,8 @@ Create directories and set permissions
 
 
 
-Virtualenv
-----------
+Install Virtualenv
+------------------
 
 #.  Install virtualenv:: 
     
@@ -102,7 +108,17 @@ Virtualenv
         sudo chown root.numbas /opt/python 
         sudo chmod grwx /opt/python 
 
+       
+
+Perform as numbas_editor
+------------------------
+
+#.  Become numbas_editor
+
         sudo su numbas_editor
+
+#.  Create the virtualenv
+
         virtualenv /opt/python/numbas-editor
 
 #.  Activate the virtualenv::
@@ -110,9 +126,6 @@ Virtualenv
         source /opt/python/numbas-editor/bin/activate
         
     (This ensures that subsequent python packages are installed in this isolated environment, and not in the system environment.)
-
-Clone the editor and compiler repositories
-------------------------------------------
 
 #.  Clone the Numbas repository::
 
@@ -128,9 +141,6 @@ Clone the editor and compiler repositories
         pip install -r /srv/numbas/compiler/requirements.txt
         pip install mysqlclient mod_wsgi
 
-Configuration
--------------
-
 #.  Run the "first setup" script::
         cd /srv/www/numbas_editor
         python first_setup.py
@@ -144,10 +154,11 @@ Configuration
     If you make any mistakes, you can run the script again, or edit
     ``numbas/settings.py`` directly.
 
+
 #.    Edit ``numbas/settings.py``
       set ALLOWED_HOSTS = [<your hostname e.g. www.example.com>]
        
-
+    
 Apache
 ------
 
