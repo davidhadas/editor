@@ -113,11 +113,11 @@ Install Virtualenv
 Perform as numbas_editor
 ------------------------
 
-#.  Become numbas_editor
+#.  Become numbas_editor::
 
         sudo su numbas_editor
 
-#.  Create the virtualenv
+#.  Create the virtualenv::
 
         virtualenv /opt/python/numbas-editor
 
@@ -142,6 +142,7 @@ Perform as numbas_editor
         pip install mysqlclient mod_wsgi
 
 #.  Run the "first setup" script::
+
         cd /srv/www/numbas_editor
         python first_setup.py
 
@@ -155,8 +156,10 @@ Perform as numbas_editor
     ``numbas/settings.py`` directly.
 
 
-#.    Edit ``numbas/settings.py``
-      set ALLOWED_HOSTS = [<your hostname e.g. www.example.com>]
+#.    Edit ``numbas/settings.py`` to set the host correctly::
+
+
+      set ALLOWED_HOSTS = ['www.example.com']
        
     
 Apache
