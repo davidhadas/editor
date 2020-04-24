@@ -1,3 +1,4 @@
+
 Installing the Numbas editor on Ubuntu Server
 =============================================
 
@@ -49,7 +50,7 @@ approach is to use `virtualenv <http://www.virtualenv.org/>`_, which is a tool t
 Database
 --------
 
-#.  Secure the MySQL database:
+#.  Secure the MySQL database::
 
         sudo mysql_secure_installation
 
@@ -162,16 +163,13 @@ Perform as numbas_editor
       set ALLOWED_HOSTS = ['www.example.com']
        
     
-Apache
-------
+Setup Apache
+------------
 
-#.  Create the apache config file and enable the site.
+#.  Download https://./apache2_ubuntu.conf to ``/etc/apache2/sites-available/numbas_editor.conf``. Then edit the file and change the lines containing ``ServerName`` and ``ServerAdmin`` 
 
-    -  Edit ``/etc/apache2/sites-available/numbas_editor.conf`` with
-       contents similar to that in :download:`this prepared config file <apache2_ubuntu.conf>`.
-       If following these instructions exactly, then you only need to change the lines containing ``ServerName`` and ``ServerAdmin``.
 
-    -  Enable the configuration::
+#. Enable the configuration::
       
             sudo a2ensite numbas_editor.conf
             sudo service apache2 reload
